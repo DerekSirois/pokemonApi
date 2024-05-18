@@ -3,16 +3,22 @@ package server
 import (
 	"log"
 	"net/http"
+	"pokemonApi/pkg/database"
 	"time"
 
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
+	"github.com/jmoiron/sqlx"
 )
 
-type Server struct{}
+type Server struct {
+	Db *sqlx.DB
+}
 
 func New() *Server {
-	return &Server{}
+	return &Server{
+		Db: database.Connect(),
+	}
 }
 
 func (s Server) Run() {

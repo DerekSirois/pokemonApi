@@ -20,3 +20,23 @@ CREATE TABLE Pokemon
         FOREIGN KEY(type2Id)
             REFERENCES Types(id)
 ); 
+
+INSERT INTO Types(name)
+VALUES ('Normal'),
+('Fire'),
+('Water'),
+('Electric'),
+('Grass'),
+('Ice'),
+('Fighting'),
+('Poison'),
+('Ground'),
+('Flying'),
+('Psychic'),
+('Bug'),
+('Rock'),
+('Ghost'),
+('Dragon'),
+('Dark'),
+('Steel'),
+('Fairy');
