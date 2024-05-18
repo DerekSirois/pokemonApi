@@ -1,0 +1,2 @@
+DROP TABLE Types;
+DROP TABLE Pokemon;
