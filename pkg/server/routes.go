@@ -6,6 +6,9 @@ import (
 	"github.com/go-chi/chi/v5"
 )
 
-func initRoutes(r *chi.Mux) {
+func (s Server) initRoutes(r *chi.Mux) {
 	r.Get("/", handler.Index)
+	r.Get("/pokemon", s.pokemonHandler.GetAll)
+	r.Get("/pokemon/{id:[0-9]+}", s.pokemonHandler.GetById)
+	r.Post("/pokemon", s.pokemonHandler.Create)
 }
