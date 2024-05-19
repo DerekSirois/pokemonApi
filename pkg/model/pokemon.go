@@ -36,6 +36,15 @@ func (s *PokemonStore) GetById(id int) (Pokemon, error) {
 	return pokemon, nil
 }
 
+func (s *PokemonStore) GetRandom() (Pokemon, error) {
+	pokemon := Pokemon{}
+	err := s.Db.Get(&pokemon, "SELECT p.id, p.name, p.pokedexnumber, t.name as type1, t2.name as type2 FROM pokemon p JOIN types t on p.type1id = t.id JOIN types t2 on p.type2id = t2.id ORDER BY random() LIMIT 1")
+	if err != nil {
+		return Pokemon{}, errors.New("failed to get the pokemons")
+	}
+	return pokemon, nil
+}
+
 func (s *PokemonStore) GetTypeIdByName(name string) (int, error) {
 	pokemonType := struct{ Id int }{}
 	err := s.Db.Get(&pokemonType, "SELECT id FROM types WHERE name = $1", name)
